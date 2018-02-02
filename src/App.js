@@ -388,7 +388,7 @@ class App extends Component {
               padding-left: 0.2em;
               border-style: dotted;
               width: 20vw;
-              background-color: SeaGreen;
+              background-color: #0c6bff;
             }
             span#fowlTotal {
               font-size: 18px;
