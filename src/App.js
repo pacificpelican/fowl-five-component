@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 //  fowlfive.js crypto calulation component for mlBench by Dan McKeown copyright 2018
-//  http://danmckeown.info
+//  http://danmckeown.info    //  update @ v0.3.1
 
 const cryptoURLbase = "https://api.coinmarketcap.com/v1/"; //  this is the URL for the CoinMarketCap API server
 const cryptoURLExt = "ticker/";
@@ -30,7 +30,6 @@ function getFowlFiveIndexV1(...cryptos) {
   //  expected crypto object parameters: bitcoin, ethereum, bitcoincash, litecoin, dash
   let totalCap = 0;
   let totalPrice = 0;
-  let totalTotal = 0;
 
   const capLimit = cryptos[0].cap; //  assuming for now [0] will be bitcoin
   const priceStandard = cryptos[0].price;
@@ -97,7 +96,6 @@ function getFowlFiveIndexV1(...cryptos) {
 
 let totalCap = 0;
 let totalPrice = 0;
-let totalTotal = 0;
 
 var capLimit = 0;
 var priceStandard = 0;
@@ -164,27 +162,27 @@ class App extends Component {
     for (let i = 0; i < reducedArray.length; i++) {
       console.log("__tuple state:");
       console.log(i, outCount, iteratorCount, reducedArray[i]);
-      if (reducedArray[i][2] == "bitcoin") {
+      if (reducedArray[i][2] === "bitcoin") {
         bitcoinP.cap = reducedArray[i][0];
         bitcoinP.price = reducedArray[i][1];
         bitcoinP.name = reducedArray[i][2];
       }
-      if (reducedArray[i][2] == "ethereum") {
+      if (reducedArray[i][2] === "ethereum") {
         ethP.cap = reducedArray[i][0];
         ethP.price = reducedArray[i][1];
         ethP.name = reducedArray[i][2];
       }
-      if (reducedArray[i][2] == "bitcoin-cash") {
+      if (reducedArray[i][2] === "bitcoin-cash") {
         bchP.cap = reducedArray[i][0];
         bchP.price = reducedArray[i][1];
         bchP.name = reducedArray[i][2];
       }
-      if (reducedArray[i][2] == "litecoin") {
+      if (reducedArray[i][2] === "litecoin") {
         ltcP.cap = reducedArray[i][0];
         ltcP.price = reducedArray[i][1];
         ltcP.name = reducedArray[i][2];
       }
-      if (reducedArray[i][2] == "dash") {
+      if (reducedArray[i][2] === "dash") {
         dshP.cap = reducedArray[i][0];
         dshP.price = reducedArray[i][1];
         dshP.name = reducedArray[i][2];
@@ -361,8 +359,6 @@ class App extends Component {
     var ffindex = getFowlFiveIndexV1(bitcoinP, ethP, bchP, ltcP, dshP);
     console.log("ffindex calculated by function: " + ffindex);
 
-    let Cap = this.state.pricesAndCaps[0];
-    let Price = this.state.pricesAndCaps[1];
     return (
       <div id="fowlComponentDiv">
         <span id="ffhead">
