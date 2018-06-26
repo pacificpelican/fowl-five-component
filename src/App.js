@@ -5,10 +5,10 @@ import React, { Component } from 'react';
 
 import getFowlFiveIndexV1 from 'fowlfive';
 
-const cryptoURLbase = "https://api.coinmarketcap.com/v1/"; //  this is the URL for the CoinMarketCap API server
+const cryptoURLbase = "https://api.coinmarketcap.com/v2/"; //  this is the URL for the CoinMarketCap API server
 const cryptoURLExt = "ticker/";
 
-const dataSource = "CoinMarketCap";
+const dataSource = "CoinMarketCap [v2 API]";
 const dataSourceWebUrl = "https://" + dataSource + ".com";
 
 const cryptoURLformat = cryptoURLbase + cryptoURLExt;
@@ -72,15 +72,15 @@ class App extends Component {
       })
       .then(function (myReturn) {
         console.log(myReturn);
-        let cryptoValSubTotal = myReturn[0].price_usd;
-        let marketCapSubTotal = myReturn[0].market_cap_usd;
+        let cryptoValSubTotal = myReturn.data.quotes.USD.price;
+        let marketCapSubTotal = myReturn.data.quotes.USD.market_cap;
         console.log(
           "market cap: " + marketCapSubTotal + " | price: " + cryptoValSubTotal
         );
         ret = [marketCapSubTotal, cryptoValSubTotal];
         let oldArr = that.state.pricesAndCaps;
         console.log("adding " + ret + " to " + oldArr);
-        ret.push(myReturn[0].id);
+        ret.push(myReturn.data.name.toLowerCase());
 
         oldArr[oldArr.length] = ret;
         that.setState({ pricesAndCaps: oldArr });
@@ -105,7 +105,7 @@ class App extends Component {
         ethP.price = reducedArray[i][1];
         ethP.name = reducedArray[i][2];
       }
-      if (reducedArray[i][2] === "bitcoin-cash") {
+      if (reducedArray[i][2] === "bitcoin cash") {
         bchP.cap = reducedArray[i][0];
         bchP.price = reducedArray[i][1];
         bchP.name = reducedArray[i][2];
@@ -218,11 +218,11 @@ class App extends Component {
     var that = this;
     let dest = cryptoURLformat + obvParam + "/";
 
-    var abitcoinArry = this.getCryptoData("bitcoin");
-    var ethereumArray = this.getCryptoData("ethereum");
-    var bitcoincashArray = this.getCryptoData("bitcoin-cash");
-    var litecoinArray = this.getCryptoData("litecoin");
-    var dashArray = this.getCryptoData("dash");
+    var abitcoinArry = this.getCryptoData(1);   //  bitcoin
+    var ethereumArray = this.getCryptoData(1027); //  ethereum
+    var bitcoincashArray = this.getCryptoData(1831);  //  bitcoin-cash
+    var litecoinArray = this.getCryptoData(2);  //  litecoin
+    var dashArray = this.getCryptoData(131);  //  dash
   }
   render() {
     console.log("CryptoCoins array (of arrays)--: " + this.state.pricesAndCaps);
@@ -285,7 +285,7 @@ class App extends Component {
     console.log("**FOWL FIVE INDEX: " + fowlFiveIndex);
     console.log("bitcoinP.name is " + bitcoinP.name);
     console.log("ethP.name is " + ethP.name);
-    console.log("bchP.name is " + bchP.name);
+    console.log("bchP.id is " + bchP.id);
     console.log("ltcP.name is " + ltcP.name);
     console.log("dshP.name is " + dshP.name);
 
@@ -317,7 +317,7 @@ class App extends Component {
               padding-left: 0.2em;
               border-style: dotted;
               width: 20vw;
-              background-color: #0c6bff;
+              background-color: #4c8df7;
             }
             span#fowlTotal {
               font-size: 18px;
