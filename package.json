@@ -1,11 +1,12 @@
 {
   "name": "fowlfivecomponent",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.0",
+    "fowlfive": "1.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

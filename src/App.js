@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-//  fowlfive.js crypto calulation component for mlBench by Dan McKeown copyright 2018
-//  http://danmckeown.info    //  update @ v0.3.1
+//  fowlfive.js crypto calulation component by Dan McKeown copyright 2018
+//  http://danmckeown.info
+
+import getFowlFiveIndexV1 from 'fowlfive';
 
 const cryptoURLbase = "https://api.coinmarketcap.com/v1/"; //  this is the URL for the CoinMarketCap API server
 const cryptoURLExt = "ticker/";
@@ -24,75 +26,6 @@ var ethP = new crypto();
 var bchP = new crypto();
 var ltcP = new crypto();
 var dshP = new crypto();
-
-function getFowlFiveIndexV1(...cryptos) {
-  console.log("cryptos array received by getFowlFiveIndexV1: " + cryptos);
-  //  expected crypto object parameters: bitcoin, ethereum, bitcoincash, litecoin, dash
-  let totalCap = 0;
-  let totalPrice = 0;
-
-  const capLimit = cryptos[0].cap; //  assuming for now [0] will be bitcoin
-  const priceStandard = cryptos[0].price;
-  let subAmount = 0;
-  let runningTotal = 0;
-  let subAmountArray = [];
-  let refAmtTotal = 0;
-  let localRebasedPriceRatioTotal = 0;
-  let priceTotal = 0;
-
-  for (let crypto of cryptos) {
-    totalCap = totalCap + crypto.cap;
-    totalPrice = totalPrice + crypto.price;
-    let localPriceCapRatio = totalPrice / totalCap;
-    console.log("local Price Cap Ratio: " + localPriceCapRatio);
-
-    priceTotal = priceTotal + crypto.price;
-
-    let localCapPercentage = crypto.cap / capLimit;
-    console.log("local cap percentage: " + localCapPercentage);
-    subAmount = localCapPercentage * crypto.price;
-    let localRebasedPriceRatio = crypto.price / priceStandard;
-    let localRebasedPrice =
-      crypto.price * (localRebasedPriceRatio * crypto.cap) / 10000000000;
-    console.log("local Rebased Price Ratio: " + localRebasedPriceRatio);
-    if (localRebasedPriceRatio !== 1) {
-      localRebasedPriceRatioTotal =
-        localRebasedPriceRatioTotal + localRebasedPriceRatio;
-    } else {
-      localRebasedPriceRatioTotal =
-        localRebasedPriceRatioTotal + crypto.price / 10000;
-    }
-
-    console.log("local Rebased Price: " + localRebasedPrice);
-
-    let refAmt = localCapPercentage * localRebasedPrice;
-    console.log("refAmt: " + refAmt);
-    refAmtTotal = refAmtTotal + refAmt;
-
-    let localBTCbasis = crypto.price / cryptos[0].price;
-    console.log("localBTCbasis: " + localBTCbasis);
-    let localAdjustedRebasedPrice = crypto.price / localBTCbasis; //  this acts like a checksum
-    console.log("localAdjustedRebasedPrice: " + localAdjustedRebasedPrice);
-    let adjustedFowlTotal = localAdjustedRebasedPrice * localRebasedPriceRatio;
-    console.log("adjustedFowlTotal: " + adjustedFowlTotal);
-
-    subAmountArray.push(subAmount);
-
-    runningTotal = localRebasedPrice / 100 + runningTotal;
-    console.log("current running total: " + runningTotal);
-    console.log("ref amt total: " + refAmtTotal);
-  }
-
-  let adjustedLocalRebasedPriceRatioTotal = localRebasedPriceRatioTotal * 1000;
-  let fowlFiveIndex = adjustedLocalRebasedPriceRatioTotal;
-  console.log("total market cap: " + totalCap);
-  console.log("total price " + priceTotal);
-  console.log("Fowl Five Index: " + fowlFiveIndex);
-  console.log(
-    "adjusted localRebasedPriceRatioTotal: " + localRebasedPriceRatioTotal
-  );
-  return fowlFiveIndex;
-}
 
 let totalCap = 0;
 let totalPrice = 0;
