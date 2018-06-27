@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
+import getFowlFiveIndexV1 from 'fowlfive';
+import styled from 'styled-components';
+
 //  fowlfive.js crypto calulation component by Dan McKeown copyright 2018
 //  http://danmckeown.info
 
-import './App.css';
-import getFowlFiveIndexV1 from 'fowlfive';
-
-import styled from 'styled-components';
+//  import './App.css'; Local CSS deprecated - using styled-components
 
 const Fowlcomponentdiv = styled.div`
 border-style: none;
@@ -21,10 +21,57 @@ const Fowlcontainer = styled.div`
   background-color: #4c8df7;
 `;
 
+const Fowltotalspan = styled.span`
+  font-size: 18px;
+  font-family: "Hack", "Fira Code", "Menlo", monospace;
+  color: FloralWhite;
+`;
+
+const Ffheadspan = styled.span`
+  font-size: 20px;
+  font-family: "Lucida Grande", "Helvetica", "Roboto", "Ubuntu Sans", sans-serif;
+  color: AliceBlue;
+  text-decoration: none;
+`
+
+const Creatorcreditspan = styled.span`
+  font-size: 14px;
+  font-family: "Opens Sans", "Roboto", "Ubuntu Sans", "Helvetica", sans-serif;
+  color: Gainsboro;
+`;
+
+const Creatorcreditspana = styled.a`
+  font-size: 14px;
+  font-family: "Opens Sans", "Roboto", "Ubuntu Sans", "Helvetica", sans-serif;
+  color: Gainsboro;
+`;
+
+const Ffaboutspan = styled.span`
+  margin-left: 0.6em;
+  font-size: 10px;
+  color: silver;
+`;
+
+const Ffaboutspana = styled.a`
+  margin-left: 0.6em;
+  font-size: 10px;
+  color: silver;
+`;
+
+const Sourcecspan = styled.span`
+  font-size: 12px;
+  color: darkgray;
+`;
+
+const Sourcecspana = styled.span`
+  font-size: 12px;
+  color: darkgray;
+`;
+
 const cryptoURLbase = "https://api.coinmarketcap.com/v2/"; //  this is the URL for the CoinMarketCap API server
 const cryptoURLExt = "ticker/";
 
-const dataSource = "CoinMarketCap [v2 API]";
+const dataSource = "CoinMarketCap";
 const dataSourceWebUrl = "https://" + dataSource + ".com";
 
 const cryptoURLformat = cryptoURLbase + cryptoURLExt;
@@ -310,22 +357,22 @@ class App extends Component {
 
     return (
       <Fowlcontainer>
-        <span id="ffhead">
+        <Ffheadspan>
           Fowl Five Index
-        </span>
-        <span id="ffabout">
-          <a href="https://djmblog.com/page/Fowl-Five-Index">about</a>
-        </span>
+        </Ffheadspan>
+        <Ffaboutspan>
+          <Ffaboutspana href="https://djmblog.com/page/Fowl-Five-Index">about</Ffaboutspana>
+        </Ffaboutspan>
         <br />
-        <span id="creatorCredit">
-          by <a href="http://danmckeown.info">Dan McKeown</a>
-        </span>
+        <Creatorcreditspan>
+          by <Creatorcreditspana href="http://danmckeown.info">Dan McKeown</Creatorcreditspana>
+        </Creatorcreditspan>
         <Fowlcomponentdiv>
           <span id="info" />
-          <span id="fowlTotal">{ffindex.toFixed(4)}</span>
+          <Fowltotalspan>{ffindex.toFixed(4)}</Fowltotalspan>
         </Fowlcomponentdiv>
         <aside id="sourceInfo">
-          <span id="sourceC">price data via <a href={dataSourceWebUrl}>{dataSource}</a></span>
+          <Sourcecspan>price data via <Sourcecspana href={dataSourceWebUrl}>{dataSource}</Sourcecspana></Sourcecspan>
         </aside>
        
       </Fowlcontainer>
