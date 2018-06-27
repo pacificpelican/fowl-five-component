@@ -14,6 +14,13 @@ width: 18vw;
 background-color: #4c8df7;
 `;
 
+const Fowlcontainer = styled.div`
+  padding-left: 0.2em;
+  border-style: dotted;
+  width: 20vw;
+  background-color: #4c8df7;
+`;
+
 const cryptoURLbase = "https://api.coinmarketcap.com/v2/"; //  this is the URL for the CoinMarketCap API server
 const cryptoURLExt = "ticker/";
 
@@ -302,7 +309,7 @@ class App extends Component {
     console.log("ffindex calculated by function: " + ffindex);
 
     return (
-      <div id="fowlComponentDiv">
+      <Fowlcontainer>
         <span id="ffhead">
           Fowl Five Index
         </span>
@@ -321,7 +328,7 @@ class App extends Component {
           <span id="sourceC">price data via <a href={dataSourceWebUrl}>{dataSource}</a></span>
         </aside>
        
-      </div>
+      </Fowlcontainer>
     );
   }
 }

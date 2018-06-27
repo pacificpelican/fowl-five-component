@@ -1,11 +1,6 @@
 
 
-div#fowlComponentDiv {
-  padding-left: 0.2em;
-  border-style: dotted;
-  width: 20vw;
-  background-color: #4c8df7;
-}
+
 span#fowlTotal {
   font-size: 18px;
   font-family: "Hack", "Fira Code", "Menlo", monospace;
