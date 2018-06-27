@@ -3,7 +3,16 @@ import React, { Component } from 'react';
 //  fowlfive.js crypto calulation component by Dan McKeown copyright 2018
 //  http://danmckeown.info
 
+import './App.css';
 import getFowlFiveIndexV1 from 'fowlfive';
+
+import styled from 'styled-components';
+
+const Fowlcomponentdiv = styled.div`
+border-style: none;
+width: 18vw;
+background-color: #4c8df7;
+`;
 
 const cryptoURLbase = "https://api.coinmarketcap.com/v2/"; //  this is the URL for the CoinMarketCap API server
 const cryptoURLExt = "ticker/";
@@ -304,48 +313,14 @@ class App extends Component {
         <span id="creatorCredit">
           by <a href="http://danmckeown.info">Dan McKeown</a>
         </span>
-        <div id="fowlComponentDiv2">
+        <Fowlcomponentdiv>
           <span id="info" />
           <span id="fowlTotal">{ffindex.toFixed(4)}</span>
-        </div>
+        </Fowlcomponentdiv>
         <aside id="sourceInfo">
           <span id="sourceC">price data via <a href={dataSourceWebUrl}>{dataSource}</a></span>
         </aside>
-        <style>
-          {`
-            div#fowlComponentDiv {
-              padding-left: 0.2em;
-              border-style: dotted;
-              width: 20vw;
-              background-color: #4c8df7;
-            }
-            span#fowlTotal {
-              font-size: 18px;
-              font-family: "Hack", "Fira Code", "Menlo", monospace;
-              color: FloralWhite;
-            }
-            span#ffhead, span#ffhead a {
-              font-size: 20px;
-              font-family: "Lucida Grande", "Helvetica", "Roboto", "Ubuntu Sans", sans-serif;
-              color: AliceBlue;
-              text-decoration: none;
-            }
-            span#creatorCredit, span#creatorCredit a {
-              font-size: 14px;
-              font-family: "Opens Sans", "Roboto", "Ubuntu Sans", "Helvetica", sans-serif;
-              color: Gainsboro;
-            }
-            span#sourceC, span#sourceC a {
-              font-size: 12px;
-              color: darkgray;
-            }
-            span#ffabout, span#ffabout a {
-              margin-left: 0.6em;
-              font-size: 10px;
-              color: silver;
-            }
-            `}
-        </style>
+       
       </div>
     );
   }
