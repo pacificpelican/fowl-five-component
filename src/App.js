@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import getFowlFiveIndexV1 from 'fowlfive';
+import getFowlFiveIndexV1 from './fowlfive';
 import styled from 'styled-components';
 
 //  fowlfive.js crypto calulation component by Dan McKeown copyright 2018
