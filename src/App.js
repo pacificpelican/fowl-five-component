@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import getFowlFiveIndexV1 from './fowlfive';
-import styled from 'styled-components';
+import getFowlFiveIndexV1 from "./fowlfive";
+import styled from "styled-components";
 
 //  fowlfive.js crypto calulation component by Dan McKeown copyright 2018
 //  http://danmckeown.info
@@ -32,7 +32,7 @@ const Ffheadspan = styled.span`
   font-family: "Lucida Grande", "Helvetica", "Roboto", "Ubuntu Sans", sans-serif;
   color: AliceBlue;
   text-decoration: none;
-`
+`;
 
 const Creatorcreditspan = styled.span`
   font-size: 14px;
@@ -120,7 +120,7 @@ class App extends Component {
     let ret = [];
 
     fetch(dest, {})
-      .then(function (response) {
+      .then(function(response) {
         if (response.ok) {
           console.log("response ok");
           console.log(response.json);
@@ -133,7 +133,7 @@ class App extends Component {
         throw new Error("Network did not respond.");
         return response.blob();
       })
-      .then(function (myReturn) {
+      .then(function(myReturn) {
         console.log(myReturn);
         let cryptoValSubTotal = myReturn.data.quotes.USD.price;
         let marketCapSubTotal = myReturn.data.quotes.USD.market_cap;
@@ -199,9 +199,9 @@ class App extends Component {
   processCoinTuple(bitcoinTuple) {
     console.log(
       "running processCoinTuple wih " +
-      bitcoinTuple[2] +
-      " at forCount:" +
-      forCount
+        bitcoinTuple[2] +
+        " at forCount:" +
+        forCount
     );
     if (capLimit < bitcoinTuple[0]) {
       capLimit = bitcoinTuple[0];
@@ -222,16 +222,15 @@ class App extends Component {
     subAmount = localCapPercentage * bitcoinTuple[1];
     let localRebasedPriceRatio = bitcoinTuple[1] / priceStandard;
     let localRebasedPrice =
-      bitcoinTuple[1] *
-      (localRebasedPriceRatio * bitcoinTuple[0]) /
+      (bitcoinTuple[1] * (localRebasedPriceRatio * bitcoinTuple[0])) /
       10000000000;
     console.log("#local Rebased Price Ratio: " + localRebasedPriceRatio);
     if (localRebasedPriceRatio !== 1) {
       console.log(
         "adding " +
-        localRebasedPriceRatio +
-        " to localRebasedPriceRatioTotal " +
-        localRebasedPriceRatioTotal
+          localRebasedPriceRatio +
+          " to localRebasedPriceRatioTotal " +
+          localRebasedPriceRatioTotal
       );
       localRebasedPriceRatioTotal =
         localRebasedPriceRatioTotal + localRebasedPriceRatio;
@@ -272,7 +271,7 @@ class App extends Component {
     ];
   }
 
-  componentWillMount() { }
+  componentWillMount() {}
   componentDidMount() {
     const fetch = window.fetch;
 
@@ -281,11 +280,11 @@ class App extends Component {
     var that = this;
     let dest = cryptoURLformat + obvParam + "/";
 
-    var abitcoinArry = this.getCryptoData(1);   //  bitcoin
+    var abitcoinArry = this.getCryptoData(1); //  bitcoin
     var ethereumArray = this.getCryptoData(1027); //  ethereum
-    var bitcoincashArray = this.getCryptoData(1831);  //  bitcoin-cash
-    var litecoinArray = this.getCryptoData(2);  //  litecoin
-    var dashArray = this.getCryptoData(131);  //  dash
+    var bitcoincashArray = this.getCryptoData(1831); //  bitcoin-cash
+    var litecoinArray = this.getCryptoData(2); //  litecoin
+    var dashArray = this.getCryptoData(131); //  dash
   }
   render() {
     console.log("CryptoCoins array (of arrays)--: " + this.state.pricesAndCaps);
@@ -357,24 +356,29 @@ class App extends Component {
 
     return (
       <Fowlcontainer>
-        <Ffheadspan>
-          Fowl Five Index
-        </Ffheadspan>
+        <Ffheadspan>Fowl Five Index</Ffheadspan>
         <Ffaboutspan>
-          <Ffaboutspana href="https://djmblog.com/page/Fowl-Five-Index">about</Ffaboutspana>
+          <Ffaboutspana href="https://djmblog.com/page/Fowl-Five-Index">
+            about
+          </Ffaboutspana>
         </Ffaboutspan>
         <br />
         <Creatorcreditspan>
-          by <Creatorcreditspana href="http://danmckeown.info">Dan McKeown</Creatorcreditspana>
+          by{" "}
+          <Creatorcreditspana href="http://danmckeown.info">
+            Dan McKeown
+          </Creatorcreditspana>
         </Creatorcreditspan>
         <Fowlcomponentdiv>
           <span id="info" />
           <Fowltotalspan>{ffindex.toFixed(4)}</Fowltotalspan>
         </Fowlcomponentdiv>
         <aside id="sourceInfo">
-          <Sourcecspan>price data via <Sourcecspana href={dataSourceWebUrl}>{dataSource}</Sourcecspana></Sourcecspan>
+          <Sourcecspan>
+            price data via{" "}
+            <Sourcecspana href={dataSourceWebUrl}>{dataSource}</Sourcecspana>
+          </Sourcecspan>
         </aside>
-       
       </Fowlcontainer>
     );
   }
