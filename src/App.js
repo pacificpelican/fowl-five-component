@@ -9,9 +9,9 @@ import styled from 'styled-components';
 //  import './App.css'; Local CSS deprecated - using styled-components
 
 const Fowlcomponentdiv = styled.div`
-border-style: none;
-width: 18vw;
-background-color: #4c8df7;
+  border-style: none;
+  width: 18vw;
+  background-color: #4c8df7;
 `;
 
 const Fowlcontainer = styled.div`
