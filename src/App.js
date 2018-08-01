@@ -376,7 +376,7 @@ class App extends Component {
         <aside id="sourceInfo">
           <Sourcecspan>
             price data via{" "}
-            <Sourcecspana href={dataSourceWebUrl}>{dataSource}</Sourcecspana>
+            <a href={dataSourceWebUrl}>{dataSource}</a>
           </Sourcecspan>
         </aside>
       </Fowlcontainer>

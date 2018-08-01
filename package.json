@@ -1,6 +1,6 @@
 {
   "name": "fowlfivecomponent",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
